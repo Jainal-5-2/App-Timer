@@ -49,6 +49,40 @@ com.google.android.youtube
 
 ---
 
+## Package Getter Utility (packageGetter.py)
+
+The project includes a utility script to easily capture package names for adding to block.txt:
+
+```python
+from main import getForegroundApp
+import subprocess
+
+while True:
+    package = getForegroundApp()
+
+    if package:
+        subprocess.run(
+            'termux-clipboard-set',
+            package
+        )
+        break
+```
+
+### How to use:
+
+1. Run python packageGetter.py with root access
+2. Switch to the app you want to block
+3. The package name will be copied to your clipboard
+4. Paste it into block.txt
+
+### Purpose:
+
+· Simplifies the process of finding package names to block
+· Automatically copies detected package names to clipboard
+· Exits after successfully capturing one package
+
+---
+
 ## How It Works
 
 1. The script constantly checks which app is in the foreground.
