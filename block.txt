@@ -1,0 +1,9 @@
+com.google.android.youtube
+com.bethsoft.falloutshelter
+com.facebook.appmanager
+com.facebook.lite
+com.facebook.services
+com.facebook.system
+com.facebook.katana
+com.duolingo
+com.simyasolutions.ling.universal
