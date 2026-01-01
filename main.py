@@ -222,13 +222,14 @@ if __name__ == '__main__':
                             # Start/resume tracking this app
                             if tracking_app.start_time == 0:
                                 tracking_app.start_time = time.time()
+                                tracking_app.total_time = 0
 
                             # Show notification that tracking is starting
                             subprocess.run(
                                     [
                                         'termux-toast', '-b','black','-c','white','-g','bottom',
                                         f'Starting from {time.strftime(
-                                            '%H:%M:%S',time.gmtime(app.total_time) )}'
+                                            '%H:%M:%S',time.gmtime(tracking_app.total_time) )}'
                                     ]
                                 )
                             
