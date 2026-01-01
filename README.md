@@ -47,6 +47,15 @@ com.instagram.android
 com.google.android.youtube
 ```
 
+You can get app package using the `packageGetter.py` util
+
+Just run:
+```
+python packageGetter.py <app_name>
+```
+
+If nothing shows, just run it without any arguments, then open the app. The package name is automatically copied to the clipboard.
+
 ---
 
 ## How It Works
