@@ -2,6 +2,7 @@ import subprocess
 import time
 import re
 import threading
+from pathlib import Path
 
 def getForegroundApp():
     """
@@ -128,8 +129,11 @@ def loadBlockList() -> list:
     Each line should contain one package name.
     Returns list of package names.
     """
+    base_path = Path(__file__).parent
+    file_path = base_path / 'block.txt'
+
     result = []
-    with open('block.txt','r') as file:
+    with open(file_path,'r') as file:
         for line in file:
             pkg = line.strip()  # Remove whitespace/newlines
 
@@ -233,7 +237,7 @@ if __name__ == '__main__':
                             tracking_app.isActive = True
                             t = threading.Thread(
                                 target=monitor,
-                                args=(app,'00:30:00')  # Hardcoded 30 minute limit
+                                args=(tracking_app,'00:30:00')  # Hardcoded 30 minute limit
                             )
                             t.start()
                     else:
