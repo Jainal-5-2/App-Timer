@@ -142,6 +142,7 @@ def loadBlockList() -> list:
     
     return result
 
+# TODO improve this thing
 if __name__ == '__main__':
     # Dictionary to store App objects keyed by package name
     queue = {}
@@ -187,12 +188,14 @@ if __name__ == '__main__':
                                 time.gmtime(ban_elapsed)
                             )
 
+                            print(f'Package: {tracking_app.package}')
                             print('LOG:' + ban_elapsed)
                             print('\n\n\n')
                             
                             # Check if ban period is over
                             if ban_elapsed >= tracking_app.banned_stop_time:
                                 tracking_app.isDone = False  # Unban the app
+                                tracking_app.banned_start_time = 0
                             else:
                                 # App is still banned, kill it
                                 subprocess.run(
@@ -214,11 +217,10 @@ if __name__ == '__main__':
                                         'Banned for 30 minutes.'
                                     ]
                                 )
-                                continue  # Skip to next iteration
 
                     # If current app matches the one being tracked
                     if current_app.strip().lower() == tracking_app.package.strip().lower():
-                        if not tracking_app.isActive:
+                        if not tracking_app.isActive and tracking_app.banned_start_time == 0:
                             # Start/resume tracking this app
                             if tracking_app.start_time == 0:
                                 tracking_app.start_time = time.time()
